@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android-only texts. Texts shared with iOS are generated into strings_ios.xml. -->
+<resources>
+    <string name="app_name" translatable="false">Vzato</string>
+</resources>

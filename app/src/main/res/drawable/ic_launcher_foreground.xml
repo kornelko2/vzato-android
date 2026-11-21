@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icon E (pill with a check mark) from ../MedRemind/Design/icon/E-pulena-tableta-fajfka.svg,
+     same 1024 coordinates, scaled to 0.56 so the check mark stays inside a round mask. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+    <group
+        android:scaleX="0.56"
+        android:scaleY="0.56"
+        android:translateX="225.28"
+        android:translateY="225.28">
+        <group
+            android:rotation="45"
+            android:translateX="552"
+            android:translateY="462">
+            <path android:fillColor="#FFFFFF" android:pathData="M -12 -168 H -192 A 168 168 0 0 0 -192 168 H -12 Z" />
+            <path android:fillColor="#E0453A" android:pathData="M -12 -168 H 12 V 168 H -12 Z" />
+            <path android:fillColor="#BFDCF5" android:pathData="M 12 -168 H 192 A 168 168 0 0 1 192 168 H 12 Z" />
+        </group>
+        <path android:fillColor="#FFFFFF" android:pathData="M 98 796 A 138 138 0 1 0 374 796 A 138 138 0 1 0 98 796 Z" />
+        <path
+            android:pathData="M 168 800 L 218 850 L 308 740"
+            android:strokeColor="#E0453A"
+            android:strokeWidth="44"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+    </group>
+</vector>

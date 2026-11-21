@@ -1,0 +1,14 @@
+# Build output and local machine settings
+build/
+.gradle/
+.kotlin/
+local.properties
+.idea/
+*.iml
+captures/
+.DS_Store
+
+# Signing keys and their passwords never go into git
+*.jks
+*.keystore
+keystore.properties
