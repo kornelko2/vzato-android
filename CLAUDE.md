@@ -17,9 +17,14 @@ port. This repository's plan is `implementation-plan.md` (Czech, phases A0–A7,
    vzato.app true for Android.
 4. **Secrets stay out of git:** keystores, `keystore.properties`, `local.properties`.
 5. **MPL-2.0 header on every Kotlin file.** The name Vzato and the icon are excluded.
-6. **Scope discipline.** Behavior changes update `../MedRemind/specification.md` (and
-   `CHANGELOG.md` here once it exists). No phase beyond the plan without the user's decision.
-7. **Git.** Commit and push only when the user asks. No AI attribution. Short `type: summary`.
+6. **Scope discipline.** Behavior changes update `../MedRemind/specification.md` and
+   `CHANGELOG.md` here. No phase beyond the plan without the user's decision.
+7. **Git.** In this repository, **commit and push after every finished iteration** (a phase or a
+   self-contained step of one, once build, lint and tests pass), without asking; decided by the
+   user on 21 Nov 2026. This overrides the global "do not commit" preference for this repo only.
+   No AI attribution. Short `type: summary` in the existing style.
+8. **Changelog.** Every user-visible change and every finished phase gets a line in
+   `CHANGELOG.md` (Keep a Changelog, English) in the same commit.
 
 ## Build and test
 

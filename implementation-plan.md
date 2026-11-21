@@ -88,6 +88,16 @@ texty a překlady zůstaly shodné.
 
 ### Fáze A1 – Jádro logiky (`core`)
 
+**Stav 21. 11. 2026: hotovo.** Objektový model jako Core Data verze 8 (`Model.kt`), `DoseStore`
+jako rozhraní úložiště (Room v A2, paměť v testech), `DoseScheduler`, `ScheduleRules`, `DoseGuard`,
+`DoseLogger`, `StockService`, `ReconciliationService`, `ReminderPlanner`, `TodaySnapshot`,
+`DoseSummary`, archivace, `AmountParser`, varování před dojitím. 85 testů na JVM, převzatých z
+`VzatoTests` (scheduler, zásoba, ochrana dávky, kontrola zásob, plánovač, opakování, letní čas,
+Dnes, souhrny, „Už můžete jíst“, množství dávky) a jeden navíc pro den změny času. Texty do
+záznamu činností dodává aplikace (`ActivityTexts`). Zbylé testy z iOS přijdou s funkcemi, ke
+kterým patří: `DoseUnitTests` a `MedicationFactoryTests` (A3, řetězce a průvodce),
+`DeliveryIssueTests` (A4), CSV (A5), `DuplicateAndLogTests` (B7/B8, slučování), `OrganizerTests` (B3).
+
 Plán dávek pro den a interval (dny v týdnu, opakování po N dnech/týdnech/měsících, začátek, konec,
 archivace), stavy slotu (čeká → zmeškáno po lhůtě), dávky mimo plán, ochrana proti dvojí dávce
 (minimální odstup), `ReminderPlanner` (jedno oznámení na čas se všemi léky, opakování, odložení,
