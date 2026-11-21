@@ -10,6 +10,7 @@ iOS repository's asc.py.
     python3 scripts/play.py upload internal         # app-release.aab to a track, with release notes
     python3 scripts/play.py upload alpha --draft    # closed testing ("alpha"), left as a draft
     python3 scripts/play.py promote internal alpha  # the newest release of one track onto another
+    ... --no-review                                 # commit, but send for review from Play Console
 
 The service account key is read from PLAY_KEY or ~/.android-keys/play-service-account.json; the
 account needs access to the app in Play Console › Users and permissions. Texts and pictures come
@@ -90,7 +91,10 @@ def edit():
 
 
 def commit(edit_id: str):
-    call("POST", f"{API}/edits/{edit_id}:commit")
+    # --no-review: leave the changes for "Send for review" in Play Console (needed while an app has
+    # rejected or unsent changes, which the API cannot send for review itself)
+    query = "?changesNotSentForReview=true" if "--no-review" in sys.argv else ""
+    call("POST", f"{API}/edits/{edit_id}:commit{query}")
 
 
 def locales():
