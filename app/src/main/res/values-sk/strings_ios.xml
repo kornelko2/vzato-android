@@ -504,8 +504,8 @@
     <string name="this_month">Tento mesiac</string>
     <string name="time">Čas</string>
     <string name="time_sensitive_notifications_are_off">Časovo citlivé hlásenia sú vypnuté</string>
-    <string name="time_to_take_x_x">Je čas vziať si %1$s (%2$s).</string>
-    <string name="time_to_take_x">Je čas vziať si %s.</string>
+    <string name="time_to_take_x_x">Je čas vziať si liek: %1$s (%2$s).</string>
+    <string name="time_to_take_x">Je čas vziať si liek: %s.</string>
     <string name="times">Časy</string>
     <string name="today">Dnes</string>
     <string name="today_shows_the_medications_of_one_compartment_tog">Dnes ukáže lieky jedného dielu spolu s jedným tlačidlom Vzaté pre všetky a na každý diel príde jedna pripomienka. Plán liekov sa nemení.</string>

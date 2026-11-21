@@ -43,6 +43,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -108,6 +109,7 @@ fun TodayScreen(vm: AppViewModel, graph: Graph, now: Instant, onAddMedication: (
     var pending by remember { mutableStateOf<PendingTake?>(null) }
     var showingExtra by remember { mutableStateOf(false) }
     val undoLabel = stringResource(R.string.undo)
+    val reminderStatus by vm.reminderStatus.collectAsState()
     val takenLabel = stringResource(R.string.recorded_as_taken)
     val recentTemplate = stringResource(R.string.x_was_already_taken_at_x_take_another_dose_now)
     val earlyTemplate = stringResource(R.string.this_dose_is_planned_for_x_take_it_now_early)
@@ -169,6 +171,9 @@ fun TodayScreen(vm: AppViewModel, graph: Graph, now: Instant, onAddMedication: (
             contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
+            if (medications.isNotEmpty()) {
+                item { ReminderBanners(reminderStatus, onChanged = vm::refreshClock) }
+            }
             item {
                 when {
                     featured != null -> DoseCard(
@@ -180,6 +185,8 @@ fun TodayScreen(vm: AppViewModel, graph: Graph, now: Instant, onAddMedication: (
                         mode = takeMode(featured),
                         onTaken = { requestTake(featured) },
                         onSkip = { vm.skip(SlotRef.of(featured)) },
+                        snoozeMinutes = vm.settings.snoozeMinutes,
+                        onSnooze = { vm.snooze(listOf(SlotRef.of(featured))) },
                     )
                     slots.isEmpty() -> EmptyToday(noMedications = medications.isEmpty(), onAddMedication = onAddMedication)
                     else -> AllDoneCard()
@@ -268,6 +275,8 @@ fun DoseCard(
     mode: TakeMode,
     onTaken: () -> Unit,
     onSkip: () -> Unit,
+    snoozeMinutes: Int,
+    onSnooze: () -> Unit,
 ) {
     val locale = locale()
     val status = slot.status(now, grace)
@@ -332,8 +341,13 @@ fun DoseCard(
             ) {
                 Text(stringResource(R.string.taken).uppercase(locale), fontSize = 22.sp, fontWeight = FontWeight.Black)
             }
-            OutlinedButton(onClick = onSkip, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
-                Text(stringResource(R.string.skip))
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                OutlinedButton(onClick = onSnooze, modifier = Modifier.weight(1f).heightIn(min = 48.dp)) {
+                    Text(stringResource(R.string.snooze_n_min, snoozeMinutes), maxLines = 1)
+                }
+                OutlinedButton(onClick = onSkip, modifier = Modifier.weight(1f).heightIn(min = 48.dp)) {
+                    Text(stringResource(R.string.skip), maxLines = 1)
+                }
             }
         } else {
             Row(

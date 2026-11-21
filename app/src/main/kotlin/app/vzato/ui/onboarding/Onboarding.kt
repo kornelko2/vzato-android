@@ -60,14 +60,14 @@ import app.vzato.ui.locale
 import app.vzato.ui.minutesText
 import app.vzato.ui.unitLabel
 
-private enum class Step { WELCOME, NAME, AMOUNT, TIMES, DONE }
+private enum class Step { WELCOME, NOTIFICATIONS, NAME, AMOUNT, TIMES, DONE }
 
 private data class TimeChoice(val label: Int, val minutes: Int, val on: Boolean)
 
 /**
  * First start, for people who do not use phones much: welcome, then the first medication in three
- * steps (name, how much, when) and a summary. Every step can be skipped. Reminders permission
- * joins in phase A4.
+ * steps (name, how much, when) and a summary, with the notification permission (and why) in
+ * between. Every step can be skipped.
  */
 @Composable
 fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
@@ -89,6 +89,17 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
 
     BackHandler(enabled = step != Step.WELCOME && step != Step.DONE) { step = Step.entries[step.ordinal - 1] }
 
+    val context = LocalContext.current
+    val engine = app.vzato.VzatoApp.of(context).reminders
+    var notificationsAllowed by remember { mutableStateOf(engine.notifications.allowed) }
+    var asked by remember { mutableStateOf(false) }
+    val request = androidx.activity.compose.rememberLauncherForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.RequestPermission(),
+    ) { granted ->
+        asked = true
+        notificationsAllowed = granted || engine.notifications.allowed
+    }
+
     val canContinue = when (step) {
         Step.NAME -> draft.name.isNotBlank()
         Step.TIMES -> times.isNotEmpty()
@@ -101,7 +112,7 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
                 TextButton(onClick = { step = Step.entries[step.ordinal - 1] }) { Text(stringResource(R.string.back)) }
                 Spacer(Modifier.weight(1f))
                 Text(
-                    stringResource(R.string.step_n_of_n, step.ordinal, 3),
+                    stringResource(R.string.step_n_of_n, step.ordinal - 1, 3),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(Modifier.weight(1f))
@@ -126,6 +137,19 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
                     Title(stringResource(R.string.vzato_reminds_you_of_your_medications))
                     Body(stringResource(R.string.when_it_is_time_you_only_tap_taken_vzato_remembers))
                     Body(stringResource(R.string.let_s_set_it_up_together_it_takes_about_a_minute), secondary = true)
+                }
+                Step.NOTIFICATIONS -> {
+                    Text("🔔", Modifier.padding(top = 24.dp).align(Alignment.CenterHorizontally), fontSize = 64.sp)
+                    Title(stringResource(R.string.allow_notifications))
+                    Body(stringResource(R.string.without_them_you_will_not_hear_a_reminder_and_noth))
+                    when {
+                        notificationsAllowed -> Text(
+                            "✓ " + stringResource(R.string.notifications_are_allowed),
+                            style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, color = Palette.taken,
+                        )
+                        asked -> Body(stringResource(R.string.notifications_are_turned_off_for_vzato_turn_them_o))
+                        else -> Body(stringResource(R.string.on_the_next_screen_the_system_asks_tap_allow), secondary = true)
+                    }
                 }
                 Step.NAME -> {
                     Title(stringResource(R.string.what_is_the_medication_called))
@@ -200,6 +224,14 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
         Button(
             onClick = {
                 when (step) {
+                    Step.NOTIFICATIONS -> when {
+                        notificationsAllowed -> step = Step.NAME
+                        asked || android.os.Build.VERSION.SDK_INT < 33 -> {
+                            app.vzato.ui.today.openNotificationSettings(context)
+                            step = Step.NAME
+                        }
+                        else -> request.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                    }
                     Step.TIMES -> {
                         onSave(draft.copy(times = times))
                         step = Step.DONE
@@ -216,6 +248,11 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
                 stringResource(
                     when (step) {
                         Step.WELCOME -> R.string.let_s_start
+                        Step.NOTIFICATIONS -> when {
+                            notificationsAllowed -> R.string.s_continue
+                            asked -> R.string.open_settings
+                            else -> R.string.allow_notifications
+                        }
                         Step.TIMES -> R.string.save
                         Step.DONE -> R.string.done
                         else -> R.string.s_continue

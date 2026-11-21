@@ -141,6 +141,23 @@ Androidu před 14 spadlo, nahrazeno.
 
 ### Fáze A4 – Připomínky
 
+**Stav 21. 11. 2026: hotovo, ověřeno na emulátoru** (připomínka přišla na minutu, Vzato z
+oznámení zapsalo dávku a zrušilo opakování, odložení z karty přišlo za 10 minut). Rozhodnutí:
+**jen `SCHEDULE_EXACT_ALARM`** (uživatel povolí Budíky a připomenutí, Dnes na to upozorní),
+**ne `USE_EXACT_ALARM`**: Google Play ho podle dokumentace nechává budíkům a kalendářům a
+připomínky léků výslovně nejmenuje; bez povolení přijde připomínka s odchylkou několika minut.
+Jeden budík (`ReminderEngine`): plán z `ReminderPlanner` (stejný jako iOS, bez limitu 64), budík
+na nejbližší okamžik (připomínka, opakování, odložení, „Už můžete jíst“, varování před dojitím v
+9:00), po zazvonění se ukáže nejnovější pokus každého času (telefon, který prospal opakování,
+neukáže hromadu) a nastaví se další. Odložení a jídla v `ReminderStore`. Akce Vzato / Odložit /
+Přeskočit z oznámení přes `DoseLogger` (zdroj oznámení), „Nezaznamenáno“ při dávce těsně po
+jiné. Oznámení dávek zaznamenaných jinde zmizí. Přestavba po každé změně dat, při restartu,
+změně času, pásma, jazyka, aktualizaci a změně povolení budíků. Kanály: Připomínky léků
+(vysoká důležitost), Už můžete jíst, Zásoby (tiché). Krok s povolením oznámení v průvodci,
+varování na Dnes. Ladicí přepínač `--ez reminder-test true` přidá lék s dávkou za dvě minuty.
+Zbývá: vlastní zvuky (iOS je má), varování před úspornými režimy výrobců, průchod přes Nerušit
+(nastavení kanálu) – v A6 s obrazovkou Nastavení.
+
 Největší rozdíl proti iOS: Android nemá „naplánuj 64 oznámení dopředu“, a výrobci telefonů
 agresivně uspávají aplikace. Postup:
 

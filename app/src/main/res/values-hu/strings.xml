@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android-only texts. Texts shared with iOS are generated into strings_ios.xml. -->
+<resources>
+    <string name="reminders_may_come_late">Az emlékeztetők késhetnek</string>
+    <string name="allow_alarms_and_reminders">Engedélyezze a Vzato számára az Ébresztők és emlékeztetők beállítást, hogy minden emlékeztető percre pontosan érkezzen.</string>
+</resources>

@@ -23,7 +23,13 @@ differences are noted.
 - Medications: list with supply and get-more-by date, archived medications with Restore, and a
   form for name, strength, unit, amount in quarters, times, days or every N days, weeks or months,
   start and end, meals, color, notes and supply.
-- First-start guide: welcome and the first medication in three steps.
+- First-start guide: welcome, notification permission with the reason, and the first medication
+  in three steps.
+- Reminders: one notification per time with every medication due then, Taken, Snooze and Skip
+  in the notification, follow-ups until the dose counts as missed, snooze from the Today card,
+  "you can eat now", low-supply and run-out warnings, "not recorded" when Taken comes right after
+  another dose. One exact alarm at a time, set again after a restart or a time change. Today warns
+  when notifications or "Alarms & reminders" are off.
 - Bottom tabs on phones; a side rail and a readable column on tablets.
 - Database (Room) with the same fields as the iOS data model, a default profile, settings with
   the iOS defaults and an activity log that records every dose and supply action.

@@ -51,10 +51,13 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     val zone: ZoneId get() = ZoneId.systemDefault()
 
-    /** Reminders arrive in phase A4; until then the logic's requests go nowhere. */
-    private val notifier = object : DoseNotifying {
-        override fun notifyLowStock(medication: Medication) {}
-    }
+    private val reminders = app.reminders
+    private val notifier: DoseNotifying get() = reminders.notifier
+
+    private val _reminderStatus = MutableStateFlow(reminders.status())
+
+    /** Permission state for the warnings on Today. */
+    val reminderStatus: StateFlow<app.vzato.reminders.ReminderStatus> = _reminderStatus.asStateFlow()
 
     init {
         viewModelScope.launch { repository.version.collect { _graph.value = repository.load() } }
@@ -69,6 +72,17 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     /** After the app comes back: the ticker may have slept while the app was away. */
     fun refreshClock() {
         _now.value = Instant.now()
+        _reminderStatus.value = reminders.status()
+        // Permissions may have changed in the system settings meanwhile.
+        viewModelScope.launch { reminders.rebuild() }
+    }
+
+    /** Snooze from the Today card: only this medication; the others of its time keep their reminder. */
+    fun snooze(refs: List<SlotRef>) {
+        viewModelScope.launch {
+            val graph = repository.load()
+            reminders.snooze(refs.mapNotNull { find(graph, it) })
+        }
     }
 
     fun take(refs: List<SlotRef>, onDone: (List<SlotRef>) -> Unit = {}) = edit { graph, store ->
@@ -99,6 +113,13 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     /** Debug builds only, from MainActivity. */
     fun populateSampleData() = edit { graph, store -> SampleData.populate(graph, store, Instant.now(), zone) }
+
+    /** Debug builds only: "Test" due in two minutes, so a reminder can be watched without waiting. */
+    fun addReminderTest() = edit { graph, store ->
+        val due = Instant.now().plusSeconds(120).atZone(zone)
+        MedicationDraft(name = "Test", times = listOf(due.hour * 60 + due.minute), startDate = due.toLocalDate())
+            .save(graph, store, Instant.now().minusSeconds(3600), zone)
+    }
 
     fun archive(id: UUID) = edit { graph, _ -> graph.medication(id)?.let { MedicationArchive.archive(it, Instant.now()) } }
 

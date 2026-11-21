@@ -24,6 +24,8 @@ class MainActivity : ComponentActivity() {
             vm.settings.onboardingDone = true
             vm.populateSampleData()
         }
+        // A medication due in two minutes, to see a real reminder: --ez reminder-test true
+        if (debuggable && intent.getBooleanExtra("reminder-test", false)) vm.addReminderTest()
         setContent {
             VzatoTheme {
                 VzatoUi(vm)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android-only texts. Texts shared with iOS are generated into strings_ios.xml. -->
+<resources>
+    <string name="reminders_may_come_late">Pripomienky môžu prísť neskôr</string>
+    <string name="allow_alarms_and_reminders">Povoľte Vzatu Budíky a pripomenutia, aby každá pripomienka prišla presne na minútu.</string>
+</resources>

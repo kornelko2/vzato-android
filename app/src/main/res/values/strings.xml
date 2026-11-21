@@ -2,4 +2,6 @@
 <!-- Android-only texts. Texts shared with iOS are generated into strings_ios.xml. -->
 <resources>
     <string name="app_name" translatable="false">Vzato</string>
+    <string name="reminders_may_come_late">Reminders may come late</string>
+    <string name="allow_alarms_and_reminders">Allow Alarms &amp; reminders for Vzato so that every reminder comes right on the minute.</string>
 </resources>
