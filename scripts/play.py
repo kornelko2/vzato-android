@@ -9,6 +9,7 @@ iOS repository's asc.py.
     python3 scripts/play.py listing                 # texts, contact, icon, feature graphic, screenshots
     python3 scripts/play.py upload internal         # app-release.aab to a track, with release notes
     python3 scripts/play.py upload alpha --draft    # closed testing ("alpha"), left as a draft
+    python3 scripts/play.py promote internal alpha  # the newest release of one track onto another
 
 The service account key is read from PLAY_KEY or ~/.android-keys/play-service-account.json; the
 account needs access to the app in Play Console › Users and permissions. Texts and pictures come
@@ -157,6 +158,22 @@ def cmd_upload():
     print(f"version {code} ({name}) on {track}{' as a draft' if draft else ''}")
 
 
+def cmd_promote():
+    if len(sys.argv) < 4:
+        sys.exit("usage: play.py promote <from track> <to track> [--draft]")
+    source, target, draft = sys.argv[2], sys.argv[3], "--draft" in sys.argv
+    edit_id = edit()
+    releases = call("GET", f"{API}/edits/{edit_id}/tracks/{source}").get("releases", [])
+    if not releases:
+        sys.exit(f"nothing on {source}")
+    release = dict(releases[0])
+    release["status"] = "draft" if draft else "completed"
+    release.pop("userFraction", None)
+    call("PUT", f"{API}/edits/{edit_id}/tracks/{target}", {"track": target, "releases": [release]})
+    commit(edit_id)
+    print(f"{release.get('name')} from {source} on {target}{' as a draft' if draft else ''}")
+
+
 if __name__ == "__main__":
     command = sys.argv[1] if len(sys.argv) > 1 else "check"
-    {"check": cmd_check, "listing": cmd_listing, "upload": cmd_upload}.get(command, lambda: sys.exit(__doc__))()
+    {"check": cmd_check, "listing": cmd_listing, "upload": cmd_upload, "promote": cmd_promote}.get(command, lambda: sys.exit(__doc__))()
