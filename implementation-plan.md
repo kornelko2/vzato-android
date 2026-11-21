@@ -120,6 +120,18 @@ Room entity a DAO, `DoseLogger`, `StockService`, `ReconciliationService`, zázna
 
 ### Fáze A3 – Prototyp na telefonu: Léky a Dnes
 
+**Stav 21. 11. 2026: hotovo.** Dnes s velkou kartou (po termínu, zmeškaná, příští), tlačítkem
+Vzato, Přeskočit, časovou osou dne (podržením Vzato, Přeskočit, Vrátit zpět), lištou Vrátit po
+potvrzení, dotazem při dvojí dávce a příliš brzké dávce, dávkou navíc, upozorněním na zásobu a „Jíst
+od“. Léky: seznam se zásobou a datem doplnění, archivované s obnovením, formulář (název, síla,
+jednotka, množství po čtvrtkách, časy, dny nebo opakování po N dnech/týdnech/měsících, začátek,
+konec, jídlo a čekání, barva, poznámka, zásoba a hranice upozornění), archivace a smazání. Úvodní
+průvodce (vítejte, název, množství, časy, shrnutí). Spodní lišta na telefonu, boční lišta a
+čitelný sloupec na tabletu. Ukázková data v ladicím buildu (`--ez sample-data true`). Odložit
+přibude s připomínkami (A4), stejně jako krok s povolením oznámení v průvodci.
+Jádro nesmí používat API novější než Java 8 (lint ho nekontroluje): `LocalDate.ofInstant` by na
+Androidu před 14 spadlo, nahrazeno.
+
 - Léky: seznam, formulář (název, síla, jednotka, množství po čtvrtkách, časy, dny, jídlo, začátek
   a konec, barva, poznámka), archivace a obnovení.
 - Dnes: velká karta (směr C) s tlačítkem **Vzato**, Odložit, Přeskočit, časová osa dne, Vrátit

@@ -36,11 +36,23 @@ private val light = lightColorScheme(
     secondary = Palette.accent,
     tertiary = Palette.overdue,
     error = Palette.missed,
+    primaryContainer = Color(0xFFCFE8D7),
+    onPrimaryContainer = Color(0xFF0F3D22),
+    secondaryContainer = Color(0xFFCFE8D7),
+    onSecondaryContainer = Color(0xFF0F3D22),
+    tertiaryContainer = Color(0xFFF6E0CC),
+    onTertiaryContainer = Color(0xFF4A2205),
     // Neutral surfaces: Material's defaults carry a purple tint.
     background = Color(0xFFF8F8F6),
     surface = Color(0xFFF8F8F6),
     surfaceContainer = Color(0xFFEFEFEC),
+    surfaceContainerLowest = Color.White,
+    surfaceContainerLow = Color(0xFFF3F3F1),
+    surfaceContainerHigh = Color(0xFFF1F1EE),
+    surfaceContainerHighest = Color(0xFFE8E8E4),
     surfaceVariant = Color(0xFFE6E6E2),
+    inversePrimary = Color(0xFF8FD4A8),
+    surfaceTint = Color.Transparent,
 )
 
 private val dark = darkColorScheme(
@@ -49,10 +61,22 @@ private val dark = darkColorScheme(
     secondary = Color(0xFF4CAF78),
     tertiary = Color(0xFFE08A3C),
     error = Color(0xFFE57368),
+    primaryContainer = Color(0xFF1F4D32),
+    onPrimaryContainer = Color(0xFFCFE8D7),
+    secondaryContainer = Color(0xFF1F4D32),
+    onSecondaryContainer = Color(0xFFCFE8D7),
+    tertiaryContainer = Color(0xFF5A3313),
+    onTertiaryContainer = Color(0xFFF6E0CC),
     background = Color(0xFF121212),
     surface = Color(0xFF121212),
     surfaceContainer = Color(0xFF1E1E1E),
+    surfaceContainerLowest = Color(0xFF0C0C0C),
+    surfaceContainerLow = Color(0xFF181818),
+    surfaceContainerHigh = Color(0xFF242424),
+    surfaceContainerHighest = Color(0xFF2E2E2E),
     surfaceVariant = Color(0xFF2A2A2A),
+    inversePrimary = Color(0xFF1E7B46),
+    surfaceTint = Color.Transparent,
 )
 
 /**

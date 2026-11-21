@@ -13,7 +13,8 @@ import java.time.ZoneId
 // Calendar arithmetic in one place, always through java.time: never seconds math, which breaks on
 // the days the clocks change. Days are LocalDate in the given zone, moments are Instant.
 
-fun Instant.day(zone: ZoneId): LocalDate = LocalDate.ofInstant(this, zone)
+// atZone, not LocalDate.ofInstant: that one needs Android 14 (API 34).
+fun Instant.day(zone: ZoneId): LocalDate = atZone(zone).toLocalDate()
 
 fun LocalDate.start(zone: ZoneId): Instant = atStartOfDay(zone).toInstant()
 

@@ -35,13 +35,16 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb shell cmd locale set-app-locales app.vzato --locales cs
 ```
 
+`connectedDebugAndroidTest` uninstalls the app when it finishes (data and app language go): reinstall
+and seed with `adb shell am start -n app.vzato/.MainActivity --ez sample-data true`.
 Emulators: `Pixel_9a`, `Pixel_Tablet` (`~/Library/Android/sdk/emulator/emulator -avd Pixel_9a`).
 Before saying a change is done: build and lint pass, all tests pass, new logic in `core` has a test.
 
 ## Conventions
 
 - Logic without Android goes to `core` (package `app.vzato.core`), uses `java.time` and never
-  manual seconds math. Tests: fixed Europe/Prague zone, Monday 2 Nov 2026, as on iOS.
+  manual seconds math. `core` runs on Android 8 (API 26) but lint does not check it: use only Java 8 APIs
+  there (no `LocalDate.ofInstant`, `List.of`, `Duration.toSeconds`…). Tests: fixed Europe/Prague zone, Monday 2 Nov 2026, as on iOS.
 - Data mirrors the iOS Core Data model (field names, enums as raw strings, lists as "1,2,3"),
   every record has a UUID `id` and `updatedAt`; a dose has no `DoseEvent` until the user acts.
   Stock changes only in `DoseLogger` and `StockService`; every action writes an `ActivityEntry`.

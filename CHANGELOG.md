@@ -17,5 +17,13 @@ differences are noted.
   start, end, pause, archive), dose statuses, protection against a double dose, recording doses
   with the amount taken, supply and run-out date, supply check, one reminder per time with
   follow-ups and snooze, the Today card's choice of dose, day summaries and "you can eat now".
+- Today: one large card for the dose that needs attention with a big Taken button and Skip, the
+  whole day below (touch and hold for Taken, Skip or Reset), Undo after Taken, a question before a
+  second dose or an early one, extra doses, low-supply and "eat from" notes.
+- Medications: list with supply and get-more-by date, archived medications with Restore, and a
+  form for name, strength, unit, amount in quarters, times, days or every N days, weeks or months,
+  start and end, meals, color, notes and supply.
+- First-start guide: welcome and the first medication in three steps.
+- Bottom tabs on phones; a side rail and a readable column on tablets.
 - Database (Room) with the same fields as the iOS data model, a default profile, settings with
   the iOS defaults and an activity log that records every dose and supply action.
