@@ -17,3 +17,5 @@ differences are noted.
   start, end, pause, archive), dose statuses, protection against a double dose, recording doses
   with the amount taken, supply and run-out date, supply check, one reminder per time with
   follow-ups and snooze, the Today card's choice of dose, day summaries and "you can eat now".
+- Database (Room) with the same fields as the iOS data model, a default profile, settings with
+  the iOS defaults and an activity log that records every dose and supply action.

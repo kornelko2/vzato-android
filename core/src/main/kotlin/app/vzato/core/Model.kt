@@ -104,6 +104,11 @@ class Medication(
     var lowStockNotifiedAt: Instant? = null,
     var profileId: UUID? = null,
     var updatedAt: Instant? = null,
+    // Used by later phases (organizer, photos, medicines database); kept so nothing is lost on save.
+    var organizerModeRaw: String = "",
+    var shownPhotoKindRaw: String? = null,
+    var registryCode: String? = null,
+    var registrySourceRaw: String? = null,
 ) {
     val schedules: MutableList<Schedule> = mutableListOf()
     val events: MutableList<DoseEvent> = mutableListOf()

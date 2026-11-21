@@ -107,6 +107,13 @@ stejné případy jako na iOS.
 
 ### Fáze A2 – Data a služby
 
+**Stav 21. 11. 2026: hotovo** (ukázková data přesunuta do A3, kde je je kde ukázat). Room verze 1
+se stejnými poli jako Core Data model 8, bez cizích klíčů (kvůli budoucí synchronizaci), schéma
+v `app/schemas`. `VzatoRepository.edit` pouští změny jednu po druhé v jedné transakci nad
+čerstvě načtenými daty; `RoomDoseStore` zapisuje jen změněné řádky. Výchozí profil „Já“, nastavení
+se stejnými výchozími hodnotami jako iOS, texty záznamu činností z překladů iOS. 4 testy na
+emulátoru (uložení dávky s množstvím, vrácení, změna plánu, smazání léku).
+
 Room entity a DAO, `DoseLogger`, `StockService`, `ReconciliationService`, záznam činností
 (`ActivityEntry`, nikdy se needituje ani nemaže), výchozí profil „Já“. Ukázková data pro ladění
 (`--sample-data` jako argument intentu v debug buildu).
