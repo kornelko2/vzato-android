@@ -3,4 +3,26 @@
 <resources>
     <string name="reminders_may_come_late">Az emlékeztetők késhetnek</string>
     <string name="allow_alarms_and_reminders">Engedélyezze a Vzato számára az Ébresztők és emlékeztetők beállítást, hogy minden emlékeztető percre pontosan érkezzen.</string>
+    <string name="app_language_android">A Beállítások › Rendszer › Nyelvek › Alkalmazások nyelve menüben módosíthatja.</string>
+    <string name="data_stays_on_this_phone">Az adatai ezen a telefonon maradnak. Semmit sem gyűjtünk.</string>
+    <string name="phone_may_stop_reminders">A telefon leállíthatja az emlékeztetőket</string>
+    <string name="battery_optimization_text">Az akkumulátorkímélés késleltetheti vagy leállíthatja a Vzato emlékeztetőit. Engedélyezze, hogy a Vzato korlátozás nélkül fusson.</string>
+    <string name="do_not_disturb">Ne zavarjanak</string>
+    <string name="do_not_disturb_text">Ha a Ne zavarjanak módban is hallani szeretné az emlékeztetőket, nyissa meg a Gyógyszer-emlékeztetők beállításait, és engedélyezze nekik a Ne zavarjanak mód felülbírálását.</string>
+    <string name="reminders_planned_android">Az emlékeztetők következő ellenőrzése: %s</string>
+    <string name="help_new_package">Új dobozt vett? A Gyógyszerek között koppintson a gyógyszerre, és módosítsa a Mennyiség otthon értékét.</string>
+    <string name="help_battery">Ha a Beállítások azt mutatják, hogy A telefon leállíthatja az emlékeztetőket, koppintson a Beállítások megnyitása gombra, és engedélyezze a Vzato korlátozás nélküli futását.</string>
+    <string name="help_alarms">Ha a Beállítások azt mutatják, hogy Az emlékeztetők késhetnek, engedélyezze a Vzato számára az Ébresztők és emlékeztetők beállítást.</string>
+    <string name="help_volume">Ellenőrizze, hogy a telefon nincs-e némítva vagy csak rezgésre állítva, és hogy a hangerő fel van-e hangosítva.</string>
+    <string name="backup">Biztonsági mentés</string>
+    <string name="backup_text">Mentse az összes gyógyszert és az előzményeiket egy fájlba, például a Google Drive-ra vagy pendrive-ra, és állítsa vissza őket az új telefonon.</string>
+    <string name="save_backup">Mentés készítése</string>
+    <string name="restore_backup">Visszaállítás mentésből</string>
+    <string name="restore_question">Lecseréli a Vzato összes adatát a mentésre?</string>
+    <string name="restore_warning">A telefonon lévő gyógyszereket és előzményeket a fájlban lévők váltják fel.</string>
+    <string name="restore">Visszaállítás</string>
+    <string name="backup_saved">A mentés elkészült.</string>
+    <string name="backup_restored">A mentés visszaállítva.</string>
+    <string name="backup_failed">Ez a fájl nem Vzato-mentés.</string>
+    <string name="backup_file_name">Vzato mentés %s.json</string>
 </resources>

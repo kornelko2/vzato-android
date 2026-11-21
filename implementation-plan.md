@@ -197,6 +197,18 @@ v Nastavení.
 
 ### Fáze A6 – Nastavení, tablet, jazyky, záloha
 
+**Stav 21. 11. 2026: hotovo.** Nastavení: stav oznámení a přesných budíků, upozornění na úsporu
+baterie (odkaz na seznam aplikací, ne přímá žádost: tu Google Play povoluje jen některým
+aplikacím), odložení, opakování, lhůta zmeškání, Nerušit (odkaz na nastavení kanálu Připomínky
+léků), Obnovit připomínky; zvuky z iOS (převedené `scripts/convert-sounds.sh` do WAV, kanál pro
+každý zvuk, protože Android zvuk kanálu nemění); zásoby; vzhled (systém, světlý, tmavý, i se
+stavovou lištou); jazyk (odkaz na jazyk aplikace v systému); záloha; záznam činností s exportem
+CSV; nápověda (kroky z iOS, které platí na Androidu, a čtyři kroky pro Android); znovu průvodce;
+Zdarma pro všechny, verze, upozornění „není zdravotnický prostředek“, zásady soukromí, zdrojový
+kód. Záloha a obnova jednoho souboru JSON s názvy polí iOS (`docs/backup-format.md`) přes
+systémový výběr souboru; test přenosu na „jiný telefon“. Tablet a čtyři jazyky hotové od A3.
+Nové texty jen pro Android jsou v `values*/strings.xml` ve čtyřech jazycích.
+
 Nastavení (vzhled, odložení, lhůta zmeškání, opakování, zásoby, zvuky, upozornění na systémové
 volby), nápověda v aplikaci a odkaz na vzato.app, „Zdarma pro všechny“, upozornění, že nejde
 o zdravotnický prostředek. Rozvržení pro tablety a skládací telefony. Čeština, slovenština,

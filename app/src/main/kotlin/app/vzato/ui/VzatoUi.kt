@@ -43,6 +43,7 @@ private enum class Tab(val title: Int, val icon: Int) {
     TODAY(R.string.today, R.drawable.ic_today),
     MEDICATIONS(R.string.medications, R.drawable.ic_medications),
     HISTORY(R.string.history, R.drawable.ic_history),
+    SETTINGS(R.string.settings, R.drawable.ic_settings),
 }
 
 /**
@@ -57,13 +58,15 @@ fun VzatoUi(vm: AppViewModel) {
     // null = closed; "" = new medication; otherwise the id being edited.
     var editing by rememberSaveable { mutableStateOf<String?>(null) }
     var checking by rememberSaveable { mutableStateOf<String?>(null) }
+    // "help" or "activity" over the Settings tab.
+    var settingsPage by rememberSaveable { mutableStateOf<String?>(null) }
     var onboardingDone by rememberSaveable { mutableStateOf(vm.settings.onboardingDone) }
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     LaunchedEffect(lifecycle) { lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { vm.refreshClock() } }
 
     val data = graph ?: return
     // Decided once, when the data first arrives: saving the guide's medication must not end the guide.
-    val showGuide by rememberSaveable { mutableStateOf(!vm.settings.onboardingDone && data.medications.isEmpty()) }
+    var showGuide by rememberSaveable { mutableStateOf(!vm.settings.onboardingDone && data.medications.isEmpty()) }
     if (showGuide && !onboardingDone) {
         Onboarding(
             onSave = { vm.saveMedication(it) },
@@ -73,6 +76,11 @@ fun VzatoUi(vm: AppViewModel) {
             },
         )
         return
+    }
+
+    when (settingsPage) {
+        "help" -> { app.vzato.ui.settings.HelpScreen(onClose = { settingsPage = null }); return }
+        "activity" -> { app.vzato.ui.settings.ActivityLogScreen(onClose = { settingsPage = null }); return }
     }
 
     checking?.let { id ->
@@ -114,6 +122,16 @@ fun VzatoUi(vm: AppViewModel) {
             when (tab) {
                 Tab.TODAY -> TodayScreen(vm, data, now, onAddMedication = { editing = "" })
                 Tab.HISTORY -> app.vzato.ui.history.HistoryScreen(vm, data, now)
+                Tab.SETTINGS -> app.vzato.ui.settings.SettingsScreen(
+                    vm,
+                    onActivityLog = { settingsPage = "activity" },
+                    onHelp = { settingsPage = "help" },
+                    onIntroduction = {
+                        vm.settings.onboardingDone = false
+                        onboardingDone = false
+                        showGuide = true
+                    },
+                )
                 Tab.MEDICATIONS -> MedicationsScreen(vm, data, now, onOpen = { editing = it.toString() }, onAdd = { editing = "" })
             }
         }

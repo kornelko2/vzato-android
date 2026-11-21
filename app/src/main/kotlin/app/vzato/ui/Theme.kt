@@ -84,6 +84,11 @@ private val dark = darkColorScheme(
  * everywhere and matches the iOS design direction C.
  */
 @Composable
-fun VzatoTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = if (isSystemInDarkTheme()) dark else light, content = content)
+fun VzatoTheme(appearance: String = "system", content: @Composable () -> Unit) {
+    val darkMode = when (appearance) {
+        "light" -> false
+        "dark" -> true
+        else -> isSystemInDarkTheme()
+    }
+    MaterialTheme(colorScheme = if (darkMode) dark else light, content = content)
 }

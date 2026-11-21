@@ -51,6 +51,18 @@ object CsvExport {
             .filter { !it.isUnscheduled && it.status(now, grace) == DoseStatus.MISSED }
     }
 
+    /** The activity log, newest first, with the columns of the iOS export. */
+    fun activity(entries: List<ActivityEntry>): String {
+        val lines = listOf("date,action,medication,dose_time,device,source,detail") +
+            entries.sortedByDescending { it.date }.map { entry ->
+                listOf(
+                    iso(entry.date), entry.kind.raw, escape(entry.medicationName), entry.scheduledAt?.let(::iso) ?: "",
+                    escape(entry.deviceName), entry.source.raw, escape(entry.detail),
+                ).joinToString(",")
+            }
+        return lines.joinToString("\n") + "\n"
+    }
+
     /** "0.5": a plain number, the same in every language, so spreadsheets read it. */
     fun amountNumber(value: Double): String =
         BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString()

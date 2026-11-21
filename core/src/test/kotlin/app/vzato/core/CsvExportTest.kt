@@ -43,4 +43,14 @@ class CsvExportTest {
         assertEquals("0.25", CsvExport.amountNumber(0.25))
         assertEquals("1.5", CsvExport.amountNumber(1.5))
     }
+
+    @Test fun activityLogIsNewestFirst() {
+        val store = TestStore()
+        val medication = store.medication(name = "Letrox", times = listOf(8 * 60))
+        store.logger(at(monday, 8, 5)).markTaken(slots(medication, monday)[0])
+        val csv = CsvExport.activity(store.activity).trimEnd().lines()
+        assertEquals("date,action,medication,dose_time,device,source,detail", csv[0])
+        assertTrue(csv[1].startsWith("2026-11-02T07:05:00Z,taken,Letrox,2026-11-02T07:00:00Z,Test device,app,"))
+        assertEquals(2, csv.size)
+    }
 }

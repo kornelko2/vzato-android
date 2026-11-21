@@ -36,5 +36,10 @@ differences are noted.
   accents intact).
 - Supply check: count what you have, see whether it matches the records, optionally record the
   doses taken without a record.
+- Settings: reminders (permission state, battery saving, snooze, follow-ups, missed after, Do Not
+  Disturb), the iOS app's sounds for reminders and "you can eat now", supply alerts, appearance,
+  language, activity log with CSV export, help, the introduction again, and about.
+- Backup: save all medications and history to a file and restore it on another phone
+  (docs/backup-format.md).
 - Database (Room) with the same fields as the iOS data model, a default profile, settings with
   the iOS defaults and an activity log that records every dose and supply action.

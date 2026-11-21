@@ -9,6 +9,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import app.vzato.ui.AppViewModel
 import app.vzato.ui.VzatoTheme
 import app.vzato.ui.VzatoUi
@@ -27,7 +29,17 @@ class MainActivity : ComponentActivity() {
         // A medication due in two minutes, to see a real reminder: --ez reminder-test true
         if (debuggable && intent.getBooleanExtra("reminder-test", false)) vm.addReminderTest()
         setContent {
-            VzatoTheme {
+            val appearance by vm.appearance.collectAsState()
+            // Light or dark status bar icons follow the chosen appearance, not only the system.
+            androidx.compose.runtime.LaunchedEffect(appearance) {
+                val style = when (appearance) {
+                    "light" -> androidx.activity.SystemBarStyle.light(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT)
+                    "dark" -> androidx.activity.SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+                    else -> androidx.activity.SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT)
+                }
+                enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
+            }
+            VzatoTheme(appearance) {
                 VzatoUi(vm)
             }
         }

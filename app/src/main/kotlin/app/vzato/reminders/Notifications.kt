@@ -19,29 +19,59 @@ import app.vzato.MainActivity
 import app.vzato.R
 import app.vzato.core.Medication
 import app.vzato.data.Amounts
+import app.vzato.data.ReminderSound
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
 /** Builds and posts every notification Vzato shows. Texts come from the iOS translations. */
-class Notifications(private val context: Context) {
+class Notifications(private val context: Context, private val settings: app.vzato.data.AppSettings) {
     private val manager = NotificationManagerCompat.from(context)
     private val res get() = context.resources
 
-    fun createChannels() {
+    /**
+     * Android fixes a channel's sound when it is created, so each sound gets its own channel
+     * ("doses_chime"); choosing another sound removes the old channel. The person's own changes
+     * to the old channel (vibration, Do Not Disturb) are lost then, as Android has no other way.
+     */
+    fun createChannels(doseSound: ReminderSound, mealSound: ReminderSound) {
         val system = context.getSystemService(NotificationManager::class.java)
+        val doses = doseChannel(doseSound)
+        val meals = mealChannel(mealSound)
+        system.notificationChannels
+            .filter { (it.id.startsWith("doses") && it.id != doses) || (it.id.startsWith("meals") && it.id != meals) }
+            .forEach { system.deleteNotificationChannel(it.id) }
         system.createNotificationChannels(
             listOf(
-                NotificationChannel(CHANNEL_DOSES, res.getString(R.string.medication_reminders), NotificationManager.IMPORTANCE_HIGH).apply {
+                NotificationChannel(doses, res.getString(R.string.medication_reminders), NotificationManager.IMPORTANCE_HIGH).apply {
                     enableVibration(true)
                     lockscreenVisibility = android.app.Notification.VISIBILITY_PUBLIC
+                    setSound(soundUri(doseSound), audio)
                 },
-                NotificationChannel(CHANNEL_MEALS, res.getString(R.string.you_can_eat_now), NotificationManager.IMPORTANCE_DEFAULT),
+                NotificationChannel(meals, res.getString(R.string.you_can_eat_now), NotificationManager.IMPORTANCE_DEFAULT).apply {
+                    setSound(soundUri(mealSound), audio)
+                },
                 NotificationChannel(CHANNEL_SUPPLY, res.getString(R.string.supply), NotificationManager.IMPORTANCE_LOW),
             ),
         )
     }
+
+    /** The channel of medication reminders now, for its system settings (Do Not Disturb). */
+    val currentDoseChannel: String get() = doseChannel(settings.doseSound)
+    private val currentMealChannel: String get() = mealChannel(settings.mealSound)
+
+    private val audio = android.media.AudioAttributes.Builder()
+        .setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION)
+        .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .build()
+
+    fun soundUri(sound: ReminderSound): android.net.Uri =
+        sound.raw?.let { android.net.Uri.parse("android.resource://${context.packageName}/$it") }
+            ?: android.provider.Settings.System.DEFAULT_NOTIFICATION_URI
+
+    private fun doseChannel(sound: ReminderSound) = "${CHANNEL_DOSES}_${sound.key}"
+    private fun mealChannel(sound: ReminderSound) = "${CHANNEL_MEALS}_${sound.key}"
 
     val allowed: Boolean
         get() = manager.areNotificationsEnabled() && (
@@ -67,7 +97,7 @@ class Notifications(private val context: Context) {
             }
             else -> res.getQuantityString(R.plurals.n_medications, medications.size, medications.size) to lines.joinToString("\n")
         }
-        val builder = NotificationCompat.Builder(context, CHANNEL_DOSES)
+        val builder = NotificationCompat.Builder(context, currentDoseChannel)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(text.lineSequence().first())
@@ -86,7 +116,7 @@ class Notifications(private val context: Context) {
 
     fun postMeal(meal: MealReady) {
         if (!allowed) return
-        val builder = NotificationCompat.Builder(context, CHANNEL_MEALS)
+        val builder = NotificationCompat.Builder(context, currentMealChannel)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(res.getString(R.string.you_can_eat_now))
             .setContentText(res.getString(R.string.n_minutes_have_passed_since_x, meal.waitMinutes, meal.name))
@@ -128,7 +158,7 @@ class Notifications(private val context: Context) {
         if (!allowed) return
         val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(res.configuration.locales[0]).format(takenAt.atZone(zone))
         val text = res.getString(R.string.it_was_already_taken_at_x_if_you_really_took_anoth, time)
-        val builder = NotificationCompat.Builder(context, CHANNEL_DOSES)
+        val builder = NotificationCompat.Builder(context, currentDoseChannel)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(res.getString(R.string.not_recorded_x, medication.name))
             .setContentText(text)

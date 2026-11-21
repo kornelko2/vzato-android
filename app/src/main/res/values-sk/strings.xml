@@ -3,4 +3,26 @@
 <resources>
     <string name="reminders_may_come_late">Pripomienky môžu prísť neskôr</string>
     <string name="allow_alarms_and_reminders">Povoľte Vzatu Budíky a pripomenutia, aby každá pripomienka prišla presne na minútu.</string>
+    <string name="app_language_android">Zmeníte ho v Nastaveniach › Systém › Jazyky › Jazyky aplikácií.</string>
+    <string name="data_stays_on_this_phone">Vaše údaje zostávajú v tomto telefóne. Nič sa nezhromažďuje.</string>
+    <string name="phone_may_stop_reminders">Telefón môže pripomienky zastaviť</string>
+    <string name="battery_optimization_text">Šetrenie batérie môže pripomienky Vzata oneskoriť alebo zastaviť. Povoľte Vzatu beh bez obmedzení.</string>
+    <string name="do_not_disturb">Nerušiť</string>
+    <string name="do_not_disturb_text">Aby pripomienky zneli aj v režime Nerušiť, otvorte nastavenia Pripomienok liekov a povoľte im prerušiť režim Nerušiť.</string>
+    <string name="reminders_planned_android">Ďalšia kontrola pripomienok: %s</string>
+    <string name="help_new_package">Kúpili ste nové balenie? V Liekoch ťuknite na liek a zmeňte Množstvo doma.</string>
+    <string name="help_battery">Keď Nastavenia ukazujú Telefón môže pripomienky zastaviť, ťuknite na Otvoriť nastavenia a povoľte Vzatu beh bez obmedzení.</string>
+    <string name="help_alarms">Keď Nastavenia ukazujú Pripomienky môžu prísť neskôr, povoľte Vzatu Budíky a pripomenutia.</string>
+    <string name="help_volume">Skontrolujte, či telefón nie je stlmený ani len na vibrácie a či má zapnutú hlasitosť.</string>
+    <string name="backup">Záloha</string>
+    <string name="backup_text">Uložte všetky lieky a ich históriu do súboru, napríklad na Disk Google alebo USB kľúč, a obnovte ich na novom telefóne.</string>
+    <string name="save_backup">Uložiť zálohu</string>
+    <string name="restore_backup">Obnoviť zo zálohy</string>
+    <string name="restore_question">Nahradiť všetko vo Vzate zálohou?</string>
+    <string name="restore_warning">Lieky a história v tomto telefóne sa nahradia tými zo súboru.</string>
+    <string name="restore">Obnoviť</string>
+    <string name="backup_saved">Záloha uložená.</string>
+    <string name="backup_restored">Záloha obnovená.</string>
+    <string name="backup_failed">Tento súbor nie je záloha Vzata.</string>
+    <string name="backup_file_name">Vzato záloha %s.json</string>
 </resources>

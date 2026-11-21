@@ -79,6 +79,19 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch { reminders.rebuild() }
     }
 
+    private val _appearance = MutableStateFlow(settings.appearance)
+
+    /** "system", "light" or "dark", for the theme. */
+    val appearance: StateFlow<String> = _appearance.asStateFlow()
+
+    /** A setting changed: plan the reminders again (sounds, follow-ups) and redraw. */
+    fun settingsChanged() {
+        _appearance.value = settings.appearance
+        _reminderStatus.value = reminders.status()
+        _now.value = Instant.now()
+        viewModelScope.launch { reminders.rebuild() }
+    }
+
     /** Snooze from the Today card: only this medication; the others of its time keep their reminder. */
     fun snooze(refs: List<SlotRef>) {
         viewModelScope.launch {

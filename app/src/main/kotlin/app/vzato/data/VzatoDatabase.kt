@@ -34,6 +34,20 @@ interface VzatoDao {
     @Upsert fun upsertEvents(rows: List<DoseEventEntity>)
     @Insert fun insertActivity(rows: List<ActivityEntryEntity>)
 
+    @Query("SELECT * FROM activityEntry ORDER BY date") fun allActivity(): List<ActivityEntryEntity>
+
+    /** Everything, for restoring a backup. */
+    @Transaction
+    fun deleteAll() {
+        deleteAllEvents(); deleteAllSchedules(); deleteAllMedications(); deleteAllProfiles(); deleteAllActivity()
+    }
+
+    @Query("DELETE FROM doseEvent") fun deleteAllEvents()
+    @Query("DELETE FROM schedule") fun deleteAllSchedules()
+    @Query("DELETE FROM medication") fun deleteAllMedications()
+    @Query("DELETE FROM profile") fun deleteAllProfiles()
+    @Query("DELETE FROM activityEntry") fun deleteAllActivity()
+
     @Query("DELETE FROM doseEvent WHERE id IN (:ids)") fun deleteEvents(ids: List<String>)
     @Query("DELETE FROM schedule WHERE id IN (:ids)") fun deleteSchedules(ids: List<String>)
 

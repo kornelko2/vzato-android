@@ -81,6 +81,17 @@ class VzatoRepository(
         _version.value++
     }
 
+    /** The whole database as a backup file (Backup). */
+    suspend fun exportBackup(appVersion: String): String = mutex.withLock {
+        withContext(io) { db.runInTransaction<String> { Backup.export(db.dao(), appVersion, System.currentTimeMillis()) } }
+    }
+
+    /** Replaces everything with a backup; throws when the file is not one. */
+    suspend fun restoreBackup(text: String) {
+        mutex.withLock { withContext(io) { db.runInTransaction { Backup.restore(db.dao(), text) } } }
+        _version.value++
+    }
+
     suspend fun activity(limit: Int = 500): List<ActivityEntry> =
         withContext(io) { db.dao().activity(limit).map { it.toCore() } }
 }

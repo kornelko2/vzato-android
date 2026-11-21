@@ -4,4 +4,26 @@
     <string name="app_name" translatable="false">Vzato</string>
     <string name="reminders_may_come_late">Reminders may come late</string>
     <string name="allow_alarms_and_reminders">Allow Alarms &amp; reminders for Vzato so that every reminder comes right on the minute.</string>
+    <string name="app_language_android">Change it in Settings › System › Languages › App languages.</string>
+    <string name="data_stays_on_this_phone">Your data stays on this phone. Nothing is collected.</string>
+    <string name="phone_may_stop_reminders">The phone may stop reminders</string>
+    <string name="battery_optimization_text">Battery saving can delay or stop Vzato\'s reminders. Let Vzato run without restrictions.</string>
+    <string name="do_not_disturb">Do Not Disturb</string>
+    <string name="do_not_disturb_text">To hear reminders during Do Not Disturb, open the Medication reminders settings and let them override Do Not Disturb.</string>
+    <string name="reminders_planned_android">Next reminder check: %s</string>
+    <string name="help_new_package">Bought a new package? Tap the medication in Medications and change Amount at home.</string>
+    <string name="help_battery">If Settings shows The phone may stop reminders, tap Open settings and let Vzato run without restrictions.</string>
+    <string name="help_alarms">If Settings shows Reminders may come late, allow Alarms &amp; reminders for Vzato.</string>
+    <string name="help_volume">Check that the phone is not on silent or vibrate only, and that the volume is up.</string>
+    <string name="backup">Backup</string>
+    <string name="backup_text">Save all medications and their history to a file, for example on Google Drive or a USB stick, and restore it on a new phone.</string>
+    <string name="save_backup">Save a backup</string>
+    <string name="restore_backup">Restore from a backup</string>
+    <string name="restore_question">Replace everything in Vzato with the backup?</string>
+    <string name="restore_warning">The medications and history on this phone are replaced by the ones in the file.</string>
+    <string name="restore">Restore</string>
+    <string name="backup_saved">Backup saved.</string>
+    <string name="backup_restored">Backup restored.</string>
+    <string name="backup_failed">This file is not a Vzato backup.</string>
+    <string name="backup_file_name">Vzato backup %s.json</string>
 </resources>

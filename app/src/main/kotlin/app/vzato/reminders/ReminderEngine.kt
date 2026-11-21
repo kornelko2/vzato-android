@@ -49,7 +49,7 @@ class ReminderEngine(
     private val settings: AppSettings,
 ) {
     private val store = ReminderStore(context)
-    val notifications = Notifications(context)
+    val notifications = Notifications(context, settings)
     private val alarms = context.getSystemService(AlarmManager::class.java)
     private val mutex = Mutex()
     private val zone: ZoneId get() = ZoneId.systemDefault()
@@ -81,6 +81,7 @@ class ReminderEngine(
 
     /** The alarm rang: post everything due since the last check, then plan the next alarm. */
     suspend fun fire() = mutex.withLock {
+        notifications.createChannels(settings.doseSound, settings.mealSound)
         val now = Instant.now()
         val graph = repository.load()
         val since = store.lastCheck?.takeIf { it < now } ?: now.minusSeconds(60)
@@ -132,6 +133,7 @@ class ReminderEngine(
 
     /** Taken, Snooze or Skip from a notification. */
     suspend fun handle(action: String, tag: String, group: DoseGroup) {
+        notifications.createChannels(settings.doseSound, settings.mealSound)
         val now = Instant.now()
         if (action == Notifications.ACTION_SNOOZE) {
             snooze(group, now)
@@ -185,7 +187,7 @@ class ReminderEngine(
     }
 
     private fun rebuildLocked(graph: Graph, now: Instant) {
-        notifications.createChannels()
+        notifications.createChannels(settings.doseSound, settings.mealSound)
         // Snoozes whose doses were all recorded meanwhile are gone.
         store.snoozes = store.snoozes.mapNotNull { s -> openDoses(graph, s.group).takeIf { it.isNotEmpty() }?.let { s.copy(group = s.group.copy(doses = it)) } }
         // Notifications on screen for doses recorded elsewhere (in the app, another action) go away.
