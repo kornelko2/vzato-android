@@ -1,0 +1,17 @@
+# file	language	headline	subline (optional). Used by scripts/frame-screenshots.swift via scripts/screenshots.sh.
+01-today	cs	Na lék už nezapomenete
+01-today	sk	Na liek už nezabudnete
+01-today	en	Never miss a dose
+01-today	hu	Nem felejti el többé a gyógyszert
+02-medications	cs	Hlídá zásobu, ať vám lék nedojde
+02-medications	sk	Stráži zásobu, aby vám liek nedošiel
+02-medications	en	Keeps an eye on your supply
+02-medications	hu	Figyeli a készletet, hogy ne fogyjon ki
+03-history	cs	Každá dávka v kalendáři
+03-history	sk	Každá dávka v kalendári
+03-history	en	Every dose in a calendar
+03-history	hu	Minden adag a naptárban
+04-form	cs	Půlky, čtvrtky, kapky i mililitry
+04-form	sk	Polovice, štvrtiny, kvapky aj mililitre
+04-form	en	Halves, quarters, drops and millilitres
+04-form	hu	Fél és negyed tabletta, csepp, milliliter

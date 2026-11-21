@@ -41,5 +41,7 @@ differences are noted.
   language, activity log with CSV export, help, the introduction again, and about.
 - Backup: save all medications and history to a file and restore it on another phone
   (docs/backup-format.md).
+- Store listing for Google Play and F-Droid in four languages (texts, icon, feature graphic,
+  screenshots with headlines) and a signed release build. Version 1.0.
 - Database (Room) with the same fields as the iOS data model, a default profile, settings with
   the iOS defaults and an activity log that records every dose and supply action.

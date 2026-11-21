@@ -218,6 +218,15 @@ později uměl načíst i iOS.
 
 ### Fáze A7 – Beta a vydání
 
+**Stav 21. 11. 2026: připraveno, čeká na účet Google Play a testery.** Podpisový klíč
+(RSA 4096, platnost 100 let) v `~/.android-keys/` mimo repozitář, build ho najde sám; podepsaný
+release APK (4,4 MB, R8) a AAB, ověřeno na emulátoru. Verze 1.0 (kód 1). Texty obchodu ve
+čtyřech jazycích, ikona 512 px, úvodní grafika 1024 × 500 a snímky s nadpisy (1080 × 2160, Google
+Play chce nejvýš 2 : 1) ve `fastlane/metadata/android`, skripty `screenshots.sh` a
+`store-graphics.sh`. Zbývá: účet Google Play (uživatel), formuláře Data safety a Health apps
+declaration, uzavřený test 12 × 14 dní, žádost do F-Droid, GitHub Release, Android na vzato.app
+(zásady soukromí, nápověda, odkazy).
+
 - **Podpis:** vlastní klíč pro GitHub a F-Droid (pokud F-Droid ověří reprodukovatelné sestavení,
   použije náš podpis), Google Play App Signing s nahrávacím klíčem. Keystore a hesla mimo git.
   Pozor: APK z Google Play a z GitHubu budou podepsané různými klíči, mezi nimi nejde aktualizovat

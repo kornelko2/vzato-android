@@ -1,0 +1,20 @@
+Vzato vám připomene každý lék ve správný čas a hlavně řekne, jestli už jste ho vzali. Žádné „vzal jsem si to už ráno?“.
+
+• Jedna velká karta s dávkou, která je právě na řadě, a velké tlačítko Vzato
+• Připomínky s akcemi Vzato, Odložit a Přeskočit, opakování, když dávku nepotvrdíte
+• Tablety, půlky a čtvrtky tablet, kapky, mililitry, lžičky, vdechy
+• Každý den, ve vybrané dny nebo po několika dnech, týdnech či měsících, třeba odčervení jednou za měsíc
+• Ochrana před dvojí dávkou: Vzato se zeptá, než stejný lék vezmete znovu příliš brzy
+• Historie s kalendářem, opravy záznamů, export všech dávek do tabulky (CSV)
+• Zásoba léků: odečítá se sama, upozorní, když dochází, a odhadne, kdy dojde
+• Kontrola zásoby: spočítáte tablety doma a Vzato ukáže, jestli záznamy sedí
+• „Už můžete jíst“ po léku, který se bere před jídlem
+• Záznam činností: co, kdy a jak bylo zaznamenáno
+• Záloha do souboru, který si uschováte, třeba pro přechod na nový telefon
+• Čeština, slovenština, angličtina a maďarština
+
+Soukromí na prvním místě: žádný účet, žádný server, žádná analytika, žádné reklamy, žádné služby Google. Data zůstávají ve vašem telefonu, vývojář je nevidí.
+
+Vzato je zdarma a open source (MPL-2.0). Je k dispozici i pro iPhone, iPad a Mac.
+
+Vzato není zdravotnický prostředek a nenahrazuje lékaře ani lékárníka. Nic nedoporučuje, jen připomíná a vede vaše vlastní záznamy.

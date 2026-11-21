@@ -1,0 +1,1 @@
+Az első Android-verzió: emlékeztetők, a Ma kártya a Bevéve gombbal, előzmények, készlet és biztonsági mentés.

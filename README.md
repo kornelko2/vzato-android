@@ -26,6 +26,30 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"  
 
 Dependencies are limited to Kotlin, kotlinx and AndroidX. No Google Play services.
 
+## Release
+
+```bash
+./gradlew :app:bundleRelease    # Google Play (app/build/outputs/bundle/release)
+./gradlew :app:assembleRelease  # GitHub and F-Droid (app/build/outputs/apk/release)
+```
+
+The signing key is not in the repository. The build reads `keystore.properties` in the root
+(ignored by git) or `~/.android-keys/vzato-keystore.properties`:
+
+```properties
+storeFile=/path/to/vzato-release.jks
+storePassword=…
+keyAlias=vzato
+keyPassword=…
+```
+
+Without it, release builds are unsigned. Google Play re-signs with its own key (Play App Signing),
+so the APKs from Google Play and from GitHub or F-Droid cannot update each other.
+
+Store texts and pictures follow the fastlane layout that Google Play tools and F-Droid read:
+`fastlane/metadata/android/<locale>/`. `scripts/screenshots.sh` takes the screenshots from a
+running emulator, `scripts/store-graphics.sh` makes the icon and feature graphic.
+
 ## License
 
 [MPL-2.0](LICENSE). The name Vzato and the app icon are not covered by the license.

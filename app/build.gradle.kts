@@ -7,10 +7,14 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-// Absent on a fresh clone: release then builds unsigned instead of failing.
+// The release key lives outside the repository: keystore.properties in the root (gitignored) or
+// ~/.android-keys/vzato-keystore.properties. Absent on a fresh clone: release then builds unsigned.
 val keystoreProperties = Properties().apply {
-    val file = rootProject.file("keystore.properties")
-    if (file.exists()) file.inputStream().use { load(it) }
+    val file = listOf(
+        rootProject.file("keystore.properties"),
+        File(System.getProperty("user.home"), ".android-keys/vzato-keystore.properties"),
+    ).firstOrNull { it.exists() }
+    file?.inputStream()?.use { load(it) }
 }
 
 android {
@@ -26,14 +30,14 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1"
+        versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         if (keystoreProperties.isNotEmpty()) {
             create("release") {
-                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
                 storePassword = keystoreProperties.getProperty("storePassword")
                 keyAlias = keystoreProperties.getProperty("keyAlias")
                 keyPassword = keystoreProperties.getProperty("keyPassword")

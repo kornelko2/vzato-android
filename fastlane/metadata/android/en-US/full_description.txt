@@ -1,0 +1,20 @@
+Vzato reminds you of every medication at the right time and, above all, tells you whether you already took it. No more "did I take it this morning?".
+
+• One big card for the dose that is due, with a big Taken button
+• Reminders with Taken, Snooze and Skip, repeated when you don't confirm
+• Tablets, half and quarter tablets, drops, millilitres, teaspoons, puffs
+• Every day, on chosen days, or every few days, weeks or months, for example a monthly deworming tablet
+• Protection against a double dose: Vzato asks before you take the same medication again too soon
+• History with a calendar, corrections, export of every dose as a table (CSV)
+• Supply tracking: counts down by itself, warns when you run low and estimates when you run out
+• Supply check: count the pills at home and Vzato shows whether the records match
+• "You can eat now" after a medication taken before a meal
+• Activity log: what was recorded, when and how
+• Backup to a file you keep, to move to a new phone
+• Czech, Slovak, English and Hungarian
+
+Privacy first: no account, no server, no analytics, no ads, no Google services. Your data stays on your phone; the developer never sees it.
+
+Vzato is free and open source (MPL-2.0). It is also available for iPhone, iPad and Mac.
+
+Vzato is not a medical device and does not replace your doctor or pharmacist. It gives no medical advice; it reminds you and keeps your own records.

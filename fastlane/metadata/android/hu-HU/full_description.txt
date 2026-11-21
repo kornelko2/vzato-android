@@ -1,0 +1,20 @@
+A Vzato a megfelelő időben emlékeztet minden gyógyszerre, és ami a legfontosabb: megmondja, bevette-e már. Nincs többé „bevettem reggel?”.
+
+• Egy nagy kártya az éppen esedékes adaggal és egy nagy Bevéve gombbal
+• Emlékeztetők Bevéve, Szundi és Kihagyás műveletekkel, ismétléssel, ha nem erősíti meg az adagot
+• Tabletta, fél és negyed tabletta, csepp, milliliter, kiskanál, befújás
+• Minden nap, a kiválasztott napokon vagy néhány naponta, hetente, havonta, például havi féreghajtó tabletta
+• Védelem a kettős adag ellen: a Vzato rákérdez, mielőtt ugyanazt a gyógyszert túl hamar újra bevenné
+• Előzmények naptárral, javítások, az összes adag exportja táblázatba (CSV)
+• Készletkövetés: magától csökken, figyelmeztet, ha fogy, és megbecsüli, mikor fogy el
+• Készletellenőrzés: megszámolja otthon a tablettákat, és a Vzato megmutatja, egyeznek-e a bejegyzések
+• „Most már ehet” az étkezés előtt szedett gyógyszer után
+• Tevékenységnapló: mit, mikor és hogyan rögzítettek
+• Biztonsági mentés fájlba, amelyet megőriz, például új telefonra költözéshez
+• Cseh, szlovák, angol és magyar nyelven
+
+Az adatvédelem az első: nincs fiók, nincs szerver, nincs analitika, nincs reklám, nincsenek Google-szolgáltatások. Az adatai a telefonján maradnak, a fejlesztő nem látja őket.
+
+A Vzato ingyenes és nyílt forráskódú (MPL-2.0). iPhone-ra, iPadre és Macre is elérhető.
+
+A Vzato nem orvostechnikai eszköz, és nem helyettesíti az orvost vagy a gyógyszerészt. Nem ad orvosi tanácsot, csak emlékeztet, és az Ön saját feljegyzéseit vezeti.

@@ -1,0 +1,1 @@
+První verze pro Android: připomínky, karta Dnes s tlačítkem Vzato, historie, zásoba a záloha.

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -400,7 +401,11 @@ fun DoseRow(
                 .padding(vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(timeText(slot.scheduledAt, locale), modifier = Modifier.width(56.dp), style = MaterialTheme.typography.bodyMedium)
+            // Wide enough for "10:28 AM" in 12-hour languages, never wrapped.
+            Text(
+                timeText(slot.scheduledAt, locale), modifier = Modifier.widthIn(min = 56.dp).padding(end = 8.dp),
+                style = MaterialTheme.typography.bodyMedium, maxLines = 1, softWrap = false,
+            )
             StatusMark(status, isOverdue)
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {

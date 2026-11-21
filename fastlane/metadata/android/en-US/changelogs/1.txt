@@ -1,0 +1,1 @@
+First version for Android: reminders, the Today card with the Taken button, history, supply and backup.

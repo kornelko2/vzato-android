@@ -196,6 +196,8 @@ fun Onboarding(onSave: (MedicationDraft) -> Unit, onFinish: () -> Unit) {
                         Row(
                             Modifier.fillMaxWidth()
                                 .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(14.dp))
+                                // The whole row switches the time on or off, not only the switch.
+                                .clickable { choices = choices.mapIndexed { i, c -> if (i == index) c.copy(on = !c.on) else c } }
                                 .padding(14.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
