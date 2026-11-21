@@ -227,6 +227,13 @@ Play chce nejvýš 2 : 1) ve `fastlane/metadata/android`, skripty `screenshots.s
 declaration, uzavřený test 12 × 14 dní, žádost do F-Droid, GitHub Release, Android na vzato.app
 (zásady soukromí, nápověda, odkazy).
 
+**Google Play pozastaveno 21. 11. 2026.** Aplikace založená v osobním účtu (`app.vzato`, uzavřený
+test Alpha) byla dvakrát zamítnuta podle pravidla Play Console Requirements: připomínky léků patří
+podle Google do funkce *Medication and Treatment Management* ve skupině *Medical* a zdravotnické
+aplikace smí od 31. 8. 2024 vydávat jen účet organizace. Změna kategorie na Zdraví a fitness
+nepomohla; deklaraci měnit nebudeme, odpovídá skutečnosti. Pokračování až s IČO: D-U-N-S, účet
+organizace a převod aplikace do něj. Do té doby jen GitHub Release a F-Droid.
+
 - **Podpis:** vlastní klíč pro GitHub a F-Droid (pokud F-Droid ověří reprodukovatelné sestavení,
   použije náš podpis), Google Play App Signing s nahrávacím klíčem. Keystore a hesla mimo git.
   Pozor: APK z Google Play a z GitHubu budou podepsané různými klíči, mezi nimi nejde aktualizovat
@@ -279,3 +286,4 @@ declaration, uzavřený test 12 × 14 dní, žádost do F-Droid, GitHub Release,
    a veřejná výzva** (vzato.app, GitHub, dev.to; seznam testerů jako Google Group).
 3. ~~Vývojářský účet Google Play: osobní, nebo organizace?~~ Rozhodnuto 21. 11. 2026:
    **osobní** (25 USD, ověření dokladů, uzavřený test 12 × 14 dní).
+   Doplněno 21. 11. 2026: pro zdravotnickou aplikaci nestačí, viz stav fáze A7.
