@@ -17,4 +17,4 @@ Az adatvédelem az első: nincs fiók, nincs szerver, nincs analitika, nincs rek
 
 A Vzato ingyenes és nyílt forráskódú (MPL-2.0). iPhone-ra, iPadre és Macre is elérhető.
 
-A Vzato nem orvostechnikai eszköz, és nem helyettesíti az orvost vagy a gyógyszerészt. Nem ad orvosi tanácsot, csak emlékeztet, és az Ön saját feljegyzéseit vezeti.
+A Vzato nem orvostechnikai eszköz, és nem diagnosztizál, nem kezel, nem gyógyít és nem előz meg semmilyen betegséget. Nem ad orvosi tanácsot, csak emlékeztet, és az Ön saját feljegyzéseit vezeti. Orvosi tanácsért, diagnózisért vagy kezelésért forduljon orvosához vagy gyógyszerészéhez.

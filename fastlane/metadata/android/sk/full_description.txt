@@ -17,4 +17,4 @@ Súkromie na prvom mieste: žiadny účet, žiadny server, žiadna analytika, ž
 
 Vzato je zadarmo a open source (MPL-2.0). Je k dispozícii aj pre iPhone, iPad a Mac.
 
-Vzato nie je zdravotnícka pomôcka a nenahrádza lekára ani lekárnika. Nič neodporúča, len pripomína a vedie vaše vlastné záznamy.
+Vzato nie je zdravotnícka pomôcka: nediagnostikuje, nelieči, nevylieči ani nepredchádza žiadnemu ochoreniu. Nič neodporúča, len pripomína a vedie vaše vlastné záznamy. S otázkami k liečbe sa obráťte na lekára alebo lekárnika.

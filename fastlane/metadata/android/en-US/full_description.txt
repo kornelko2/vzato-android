@@ -17,4 +17,4 @@ Privacy first: no account, no server, no analytics, no ads, no Google services. 
 
 Vzato is free and open source (MPL-2.0). It is also available for iPhone, iPad and Mac.
 
-Vzato is not a medical device and does not replace your doctor or pharmacist. It gives no medical advice; it reminds you and keeps your own records.
+Vzato is not a medical device and does not diagnose, treat, cure or prevent any medical condition. It gives no medical advice; it reminds you and keeps your own records. For medical advice, diagnosis or treatment, consult your doctor or pharmacist.
