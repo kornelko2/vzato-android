@@ -232,7 +232,8 @@ test Alpha) byla dvakrát zamítnuta podle pravidla Play Console Requirements: p
 podle Google do funkce *Medication and Treatment Management* ve skupině *Medical* a zdravotnické
 aplikace smí od 31. 8. 2024 vydávat jen účet organizace. Změna kategorie na Zdraví a fitness
 nepomohla; deklaraci měnit nebudeme, odpovídá skutečnosti. Pokračování až s IČO: D-U-N-S, účet
-organizace a převod aplikace do něj. Do té doby jen GitHub Release a F-Droid.
+organizace a převod aplikace do něj (postup v `docs/google-play.md`). Do té doby jen GitHub
+Release a F-Droid.
 
 - **Podpis:** vlastní klíč pro GitHub a F-Droid (pokud F-Droid ověří reprodukovatelné sestavení,
   použije náš podpis), Google Play App Signing s nahrávacím klíčem. Keystore a hesla mimo git.

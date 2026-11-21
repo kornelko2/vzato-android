@@ -55,3 +55,7 @@ Before saying a change is done: build and lint pass, all tests pass, new logic i
 - Amounts go through `DoseFormatter.form` and the plural resources (`n_tablets`, `x_tablet`,
   `x_tablets`…).
 - Colors from `ui/Theme.kt` (`Palette`), not wallpaper-based dynamic color.
+- **Google Play is on hold** (21 Nov 2026) until the user has an organization account: medication
+  reminders count as a medical app. State and steps in `docs/google-play.md`. Do not upload or send
+  anything for review there until the user says so; never change the health declaration to get past
+  review.

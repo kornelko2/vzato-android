@@ -46,6 +46,9 @@ keyPassword=…
 Without it, release builds are unsigned. Google Play re-signs with its own key (Play App Signing),
 so the APKs from Google Play and from GitHub or F-Droid cannot update each other.
 
+Google Play is on hold until there is an organization account; see
+[docs/google-play.md](docs/google-play.md) (in Czech) for the state and the steps.
+
 Store texts and pictures follow the fastlane layout that Google Play tools and F-Droid read:
 `fastlane/metadata/android/<locale>/`. `scripts/screenshots.sh` takes the screenshots from a
 running emulator, `scripts/store-graphics.sh` makes the icon and feature graphic.
