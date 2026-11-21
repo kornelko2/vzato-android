@@ -31,5 +31,10 @@ differences are noted.
   another dose. One exact alarm at a time, set again after a restart or a time change. Today warns
   when notifications or "Alarms & reminders" are off.
 - Bottom tabs on phones; a side rail and a readable column on tablets.
+- History: month calendar with the state of every day, the chosen day's doses with corrections,
+  the month's totals and adherence, and every dose exported as a CSV table (opens in Excel with
+  accents intact).
+- Supply check: count what you have, see whether it matches the records, optionally record the
+  doses taken without a record.
 - Database (Room) with the same fields as the iOS data model, a default profile, settings with
   the iOS defaults and an activity log that records every dose and supply action.

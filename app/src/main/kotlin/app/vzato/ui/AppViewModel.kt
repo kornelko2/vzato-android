@@ -16,9 +16,11 @@ import app.vzato.core.DoseSource
 import app.vzato.core.DoseStore
 import app.vzato.core.Medication
 import app.vzato.core.MedicationArchive
+import app.vzato.core.ReconciliationService
 import app.vzato.core.day
 import app.vzato.data.Graph
 import app.vzato.data.SampleData
+import app.vzato.reminders.ReminderStatus
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -57,7 +59,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val _reminderStatus = MutableStateFlow(reminders.status())
 
     /** Permission state for the warnings on Today. */
-    val reminderStatus: StateFlow<app.vzato.reminders.ReminderStatus> = _reminderStatus.asStateFlow()
+    val reminderStatus: StateFlow<ReminderStatus> = _reminderStatus.asStateFlow()
 
     init {
         viewModelScope.launch { repository.version.collect { _graph.value = repository.load() } }
@@ -91,6 +93,19 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         refs.mapNotNull { ref -> find(graph, ref)?.let { logger.markTaken(it) } }
             .map { SlotRef(it.medication!!.id, it.scheduledAt!!, it.id, it.isUnscheduled) }
             .also { taken -> viewModelScope.launch { onDone(taken) } }
+    }
+
+    /** A dose confirmed afterwards (History): taken at its planned time. */
+    fun takeAt(ref: SlotRef, at: Instant) = edit { graph, store ->
+        find(graph, ref)?.let { DoseLogger(store, Instant.now(), notifier, zone).markTaken(it, at) }
+    }
+
+    /** The counted supply, optionally recording the doses that were taken without a record. */
+    fun applySupplyCheck(medicationId: UUID, counted: Double, recordMissing: Boolean) = edit { graph, store ->
+        val medication = graph.medication(medicationId) ?: return@edit
+        val now = Instant.now()
+        val report = ReconciliationService.report(medication, counted, now, zone)
+        ReconciliationService.apply(report, counted, recordMissing, store, now, zone, notifier)
     }
 
     fun skip(ref: SlotRef) = edit { graph, store ->

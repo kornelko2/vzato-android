@@ -182,6 +182,14 @@ agresivně uspávají aplikace. Postup:
 
 ### Fáze A5 – Historie a zásoby
 
+**Stav 21. 11. 2026: hotovo.** Historie: měsíční kalendář s barevnou tečkou dne (zelená vzato,
+červená zmeškáno, šedá čeká), dávky zvoleného dne s opravou podržením (dodatečně vzatá dávka se
+zapíše na svůj čas), součty měsíce a dodržování. Export všech dávek do CSV (stejné sloupce jako
+iOS, zmeškané dávky, profil, množství; BOM kvůli Excelu) přes systémové sdílení a `FileProvider`.
+Kontrola zásob z formuláře léku („Spočítat a zkontrolovat zásobu“) s výsledkem a doplněním
+chybějících dávek. `CsvExport` v jádře se 4 testy. Záznam činností a jeho export přijdou s
+obrazovkou Nastavení (A6).
+
 Historie: měsíční kalendář se stavem dní, oprava dne, přehled dodržování, export CSV (sdílení
 souboru přes `Intent.ACTION_SEND`). Zásoby: počet kusů, odečítání, upozornění na nízkou zásobu
 a dojití, „Doplnit do“, kontrola zásob s doplněním chybějících záznamů. Záznam činností

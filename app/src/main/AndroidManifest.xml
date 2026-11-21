@@ -28,6 +28,15 @@
             </intent-filter>
         </activity>
 
+        <!-- Exported files (CSV, later PDF) handed to other apps through sharing. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+
         <receiver android:name=".reminders.AlarmReceiver" android:exported="false" />
         <receiver android:name=".reminders.ActionReceiver" android:exported="false" />
         <receiver android:name=".reminders.SystemReceiver" android:exported="true">

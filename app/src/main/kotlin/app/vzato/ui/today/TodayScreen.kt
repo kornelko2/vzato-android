@@ -386,6 +386,7 @@ fun DoseRow(
     onTaken: () -> Unit,
     onSkip: () -> Unit,
     onReset: () -> Unit,
+    showsTakeButton: Boolean = true,
 ) {
     val locale = locale()
     val status = slot.status(now, grace)
@@ -432,7 +433,7 @@ fun DoseRow(
                     isOverdue -> Text(stringResource(R.string.overdue), style = MaterialTheme.typography.bodySmall, color = Palette.overdue)
                 }
             }
-            if (slot.isCurrent(now)) {
+            if (showsTakeButton && slot.isCurrent(now)) {
                 Button(
                     onClick = onTaken,
                     colors = ButtonDefaults.buttonColors(containerColor = Palette.taken, contentColor = Color.White),

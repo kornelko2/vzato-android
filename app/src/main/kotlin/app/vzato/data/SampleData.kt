@@ -42,16 +42,16 @@ object SampleData {
         }
         val letrox = make("Letrox", "50 µg", "3B7DD8", listOf(minutesNow - 150, minutesNow + 300), MealRelation.BEFORE, 0.5)
         val ibuprofen = make("Ibuprofen", "400 mg", "D9534F", listOf(minutesNow - 25, minutesNow + 180), MealRelation.AFTER)
-        make("Vitamin D", "", "E0A526", listOf(minutesNow + 90))
+        val vitamin = make("Vitamin D", "", "E0A526", listOf(minutesNow + 90))
         StockService.setStock(ibuprofen, 4.0, start, store)
         ibuprofen.lowStockThreshold = 5.0
         StockService.setStock(letrox, 30.0, start, store)
 
         val quiet = object : DoseNotifying { override fun notifyLowStock(medication: Medication) {} }
         // The past two weeks: nearly everything taken, a few doses missed.
-        for (back in 1..13) {
+        for (back in 1..14) {
             val day = today.minusDays(back.toLong())
-            for (medication in listOf(letrox, ibuprofen)) {
+            for (medication in listOf(letrox, ibuprofen, vitamin)) {
                 for (slot in DoseScheduler.slots(listOf(medication), day, zone)) {
                     if ((back + slot.scheduledAt.minutesOfDay(zone)) % 9 == 0) continue
                     DoseLogger(store, slot.scheduledAt.plusSeconds(240), quiet, zone).markTaken(slot)

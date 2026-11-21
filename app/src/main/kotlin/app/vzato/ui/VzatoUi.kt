@@ -42,6 +42,7 @@ import java.util.UUID
 private enum class Tab(val title: Int, val icon: Int) {
     TODAY(R.string.today, R.drawable.ic_today),
     MEDICATIONS(R.string.medications, R.drawable.ic_medications),
+    HISTORY(R.string.history, R.drawable.ic_history),
 }
 
 /**
@@ -55,6 +56,7 @@ fun VzatoUi(vm: AppViewModel) {
     var tab by rememberSaveable { mutableStateOf(Tab.TODAY) }
     // null = closed; "" = new medication; otherwise the id being edited.
     var editing by rememberSaveable { mutableStateOf<String?>(null) }
+    var checking by rememberSaveable { mutableStateOf<String?>(null) }
     var onboardingDone by rememberSaveable { mutableStateOf(vm.settings.onboardingDone) }
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     LaunchedEffect(lifecycle) { lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { vm.refreshClock() } }
@@ -73,6 +75,19 @@ fun VzatoUi(vm: AppViewModel) {
         return
     }
 
+    checking?.let { id ->
+        val medication = data.medication(UUID.fromString(id))
+        if (medication != null) {
+            BackHandler { checking = null }
+            app.vzato.ui.medications.SupplyCheckScreen(
+                medication, vm.zone,
+                onSave = { counted, record -> vm.applySupplyCheck(medication.id, counted, record); checking = null; editing = null },
+                onClose = { checking = null },
+            )
+            return
+        }
+    }
+
     editing?.let { id ->
         val medication = id.takeIf { it.isNotEmpty() }?.let { data.medication(UUID.fromString(it)) }
         BackHandler { editing = null }
@@ -87,6 +102,7 @@ fun VzatoUi(vm: AppViewModel) {
             onArchive = medication?.let { { vm.archive(it.id); editing = null } },
             onDelete = medication?.let { { vm.delete(it.id); editing = null } },
             modifier = Modifier.widthIn(max = 760.dp),
+            onCheckSupply = medication?.let { { checking = it.id.toString() } },
         )
         }
         return
@@ -97,6 +113,7 @@ fun VzatoUi(vm: AppViewModel) {
         androidx.compose.foundation.layout.Box(modifier) {
             when (tab) {
                 Tab.TODAY -> TodayScreen(vm, data, now, onAddMedication = { editing = "" })
+                Tab.HISTORY -> app.vzato.ui.history.HistoryScreen(vm, data, now)
                 Tab.MEDICATIONS -> MedicationsScreen(vm, data, now, onOpen = { editing = it.toString() }, onAdd = { editing = "" })
             }
         }

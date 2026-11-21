@@ -96,6 +96,7 @@ fun MedicationForm(
     onArchive: (() -> Unit)?,
     onDelete: (() -> Unit)?,
     modifier: Modifier = Modifier,
+    onCheckSupply: (() -> Unit)? = null,
 ) {
     var draft by remember { mutableStateOf(initial) }
     var stockText by rememberSaveable { mutableStateOf(initial.stockCount?.let(AmountParser::format) ?: "") }
@@ -160,6 +161,9 @@ fun MedicationForm(
                 onIncrease = { draft = draft.copy(unitsPerDose = draft.unitsPerDose + draft.unit.step) },
             )
             SwitchRow(stringResource(R.string.track_supply), draft.tracksStock) { draft = draft.copy(tracksStock = it) }
+            if (onCheckSupply != null && initial.tracksStock) {
+                OutlinedButton(onClick = onCheckSupply, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.count_and_check_supply)) }
+            }
             if (draft.tracksStock) {
                 OutlinedTextField(
                     value = stockText, onValueChange = { stockText = it },
