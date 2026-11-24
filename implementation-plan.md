@@ -258,7 +258,7 @@ Release a F-Droid.
 | B1 | Profily (děti, zvířata), filtr na Dnes a v Historii | kapitola 12 |
 | B2 | Databáze léčiv SÚKL a ŠÚKL offline, příbalový leták | kapitola 11 |
 | B3 | Dávkovač: díl na kartě Dnes, jedno oznámení na díl, plnění | kapitola 15 |
-| B4 | Widgety (Glance) s tlačítkem Vzato a Přeskočit | 3.9 |
+| B4 | Widgety (Glance) s tlačítkem Vzato a Přeskočit. **Hotovo 24. 11. 2026:** widget Dnes 2 × 2 (další dávka) a od 4 × 2 i pozdější dávky; tlačítka jen u dávky, kterou lze potvrdit jedním klepnutím; překreslí se po každé změně a v okamžiku, kdy dávka nastane nebo propadne (nebudící budík). Widget na zamykací obrazovce Android na telefonech nemá. | 3.9 |
 | B5 | Fotografie léku, krabičky a letáku (výběr fotky bez oprávnění, fotoaparát přes systémovou aplikaci; skener dokumentů ne, vyžaduje Google Play služby) | 3.7 |
 | B6 | Souhrn pro lékaře v PDF, historie množství | 3.4 |
 | B7 | Přenos dat iOS ↔ Android záložním souborem (iOS dostane import a export stejného formátu) | nové, změní i iOS |

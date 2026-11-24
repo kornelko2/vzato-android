@@ -49,5 +49,14 @@
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <!-- Home screen widget "Today" (Glance) and its redraw at the moments a dose changes state. -->
+        <receiver android:name=".widget.TodayWidgetReceiver" android:exported="false" android:label="@string/today">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/today_widget_info" />
+        </receiver>
+        <receiver android:name=".widget.WidgetRefresh" android:exported="false" />
     </application>
 </manifest>

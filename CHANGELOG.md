@@ -8,6 +8,8 @@ differences are noted.
 ## [Unreleased]
 
 ### Added
+- Home screen widget "Today": the next dose with Taken and Skip, and in the wide size the later
+  doses, like the iOS widget.
 - Project setup: Kotlin and Jetpack Compose, a plain Kotlin `core` module tested on the JVM,
   dependencies limited to Kotlin, kotlinx and AndroidX (no Google Play services).
 - App icon (pill with a check mark) as an adaptive icon with a monochrome layer.

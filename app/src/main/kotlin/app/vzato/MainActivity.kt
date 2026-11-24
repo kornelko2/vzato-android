@@ -28,6 +28,12 @@ class MainActivity : ComponentActivity() {
         }
         // A medication due in two minutes, to see a real reminder: --ez reminder-test true
         if (debuggable && intent.getBooleanExtra("reminder-test", false)) vm.addReminderTest()
+        // Asks the launcher to place the widget, for screenshots and tests: --ez pin-widget true
+        if (debuggable && intent.getBooleanExtra("pin-widget", false)) {
+            getSystemService(android.appwidget.AppWidgetManager::class.java)?.requestPinAppWidget(
+                android.content.ComponentName(this, app.vzato.widget.TodayWidgetReceiver::class.java), null, null,
+            )
+        }
         setContent {
             val appearance by vm.appearance.collectAsState()
             // Light or dark status bar icons follow the chosen appearance, not only the system.

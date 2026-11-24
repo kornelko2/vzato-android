@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import app.vzato.VzatoApp
+import app.vzato.widget.WidgetData
 import kotlinx.coroutines.launch
 
 /** Runs `block` in the app's scope and keeps the process alive until it is done (goAsync). */
@@ -43,5 +44,9 @@ class ActionReceiver : BroadcastReceiver() {
  * is gone or wrong, plan again.
  */
 class SystemReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) = work(context) { it.reminders.rebuild() }
+    override fun onReceive(context: Context, intent: Intent) = work(context) {
+        it.reminders.rebuild()
+        // New day, time zone or language: the widget's times and texts are stale too.
+        WidgetData.refresh(context)
+    }
 }

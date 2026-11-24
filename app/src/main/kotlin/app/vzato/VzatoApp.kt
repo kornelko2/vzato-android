@@ -11,6 +11,8 @@ import app.vzato.data.AppSettings
 import app.vzato.data.VzatoDatabase
 import app.vzato.data.VzatoRepository
 import app.vzato.reminders.ReminderEngine
+import app.vzato.widget.TodayWidget
+import androidx.glance.appwidget.updateAll
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,8 +31,13 @@ class VzatoApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        // Every change to the data plans the reminders again (and once at start).
-        scope.launch { repository.version.collect { reminders.rebuild() } }
+        // Every change to the data plans the reminders again and redraws the widget (and once at start).
+        scope.launch {
+            repository.version.collect {
+                reminders.rebuild()
+                TodayWidget().updateAll(this@VzatoApp)
+            }
+        }
     }
 
     companion object {
